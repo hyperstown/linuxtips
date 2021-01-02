@@ -120,3 +120,15 @@ venv activation: `source venvName/bin/activate`
 ```
 alias ytbest="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 ```
+
+### Network:
+
+Network usage monitor:
+
+vnstat
+
+```
+pacman -Sy vnstat
+systemctl start vnstat.service 
+systemctl enable vnstat.service
+```
