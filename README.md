@@ -3,7 +3,7 @@
 
 In this repository you will find all kinds of useful scripts, tips etc.
 
-This scripts are mostly for Manjaro and beginner users.
+This commands and scripts are written for Arch/Manjaro with KDE flavour. Written as simply as possible so even total begginer can use it. 
 
 
 
