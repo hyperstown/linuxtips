@@ -132,3 +132,24 @@ pacman -Sy vnstat
 systemctl start vnstat.service 
 systemctl enable vnstat.service
 ```
+
+### FFmpeg:
+
+Converting mp4 file into HLS playlist:
+
+`ffmpeg -i file.mp4 -profile:v baseline -level 3.0 -s 1920x1080 -start_number 0 -hls_time 10 -hls_list_size 0 -f hls file.m3u8`
+<hr>
+- -i - after this flag specify input file
+- profile:v - indicate that input file is a video file.
+- hls_time - set segment length in seconds. Default: 2
+- hls_list_size - set the maximum number of playlist entries. 0 indicates no limit.
+
+### GCC
+
+Compiling C++ file with threads:
+
+`gcc -pthread -o excutableName filename.cpp -lstdc++`
+
+- -pthread - this option adds multithreading support
+- -lstdc++ - this option has to be used in order to compile C++ file. Without it compile will assume it's written in C.
+
