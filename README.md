@@ -116,9 +116,11 @@ venv activation: `source venvName/bin/activate`
 ### Bash:
 
 #### Useful aliases:
+Use in .bash_rc in home dir.
 
 ```
 alias ytbest="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
+alias cppnew="/home/felix/scripts/createcpp.sh"
 ```
 
 ### Network:
