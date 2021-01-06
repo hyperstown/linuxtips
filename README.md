@@ -158,7 +158,7 @@ Compiling C++ file with threads:
 
 ### Screen
 
-screen - open new screen sesion.
+`screen` - open new screen sesion.
 
 ctrl + a - open command menu (it doesnt show anything on screen)
 
@@ -166,10 +166,10 @@ ctrl + d - detach session
 
 To restore session:
 
-screen -dr
+`screen -dr`
 
-List of all sessions
+List of all sessions:
 
-screen -ls
+`screen -ls`
 
 
