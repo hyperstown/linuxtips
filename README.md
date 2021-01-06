@@ -155,3 +155,21 @@ Compiling C++ file with threads:
 - -pthread - this option adds multithreading support
 - -lstdc++ - this option has to be used in order to compile C++ file. Without it compile will assume it's written in C.
 
+
+### Screen
+
+screen - open new screen sesion.
+
+ctrl + a - open command menu (it doesnt show anything on screen)
+
+ctrl + d - detach session
+
+To restore session:
+
+screen -dr
+
+List of all sessions
+
+screen -ls
+
+
