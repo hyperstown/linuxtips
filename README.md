@@ -16,6 +16,7 @@ sudo pacman -Sy manjaro-printer
 sudo pacman -Sy hplip
 sudo systemctl enable --now org.cups.cupsd.service
 ```
+NOTE: After Kernel update you might need to reconfigure driver in HP Device Menager.
 
 ### Disable title bar Chromium
 Use system title bar and borders = False
