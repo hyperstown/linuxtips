@@ -156,7 +156,7 @@ Compiling C++ file with threads:
 - -lstdc++ - this option has to be used in order to compile C++ file. Without it compile will assume it's written in C.
 
 
-### Screen
+### Screen:
 
 `screen` - open new screen sesion.
 
@@ -172,4 +172,19 @@ List of all sessions:
 
 `screen -ls`
 
+### KDE Specific:
 
+If executables open in Kate you can change this settings following this steps:
+
+`vim ~/.config/kiorc`
+
+change:
+```
+[Executable scripts]
+behaviourOnLaunch=open
+```
+to:
+```
+[Executable scripts]
+behaviourOnLaunch=execute
+```
