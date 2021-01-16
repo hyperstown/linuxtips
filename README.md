@@ -24,7 +24,7 @@ This commands and scripts are written for Arch/Manjaro with KDE flavour. Written
 14. [GCC](#gcc)
 15. [Screen](#screen)
 16. [KDE Specific](#kde-specific)
-17. []()
+17. [youtube-dl](#youtube-dl)
 
 
 
@@ -152,6 +152,7 @@ Use in .bash_rc in home dir.
 ```
 alias ytbest="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 alias cppnew="/home/felix/scripts/createcpp.sh"
+alias ytbestaudio="youtube-dl -x --audio-format mp3"
 ```
 
 ### FFmpeg:
@@ -207,3 +208,54 @@ to:
 [Executable scripts]
 behaviourOnLaunch=execute
 ```
+
+### youtube-dl
+
+A CLI tool for downloading youtube videos:
+
+Download info about formats
+
+-F switch:
+```
+youtube-dl -F https://www.youtube.com/watch?v=jNQXAC9IVRw
+```
+
+Download video in selected format:
+
+-f switch
+```
+youtube-dl -f 242 https://www.youtube.com/watch?v=jNQXAC9IVRw
+```
+
+Quick download (This may download video without audio or not in best quality):
+```
+youtube-dl -f 242 https://www.youtube.com/watch?v=jNQXAC9IVRw
+```
+
+Preferable way to download videos:
+
+Use bestvideo+bestaudio switch and merge output together into mp4 file.
+
+```
+youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 https://www.youtube.com/watch?v=jNQXAC9IVRw
+```
+
+Downloading best audio and converting it to mp3 (Requires ffmpeg):
+
+```
+youtube-dl -x --audio-format mp3 https://www.youtube.com/watch?v=jNQXAC9IVRw
+```
+
+Downloading playlists
+
+-i switch:
+Example YouTube playlist URL:
+```
+https://www.youtube.com/playlist?list=PLz2NxjLbk1uRRe0p_Z9XyYV4RGtC-FvzH
+```
+Playlist download:
+```
+youtube-dl -x --audio-format mp3 -i PLz2NxjLbk1uRRe0p_Z9XyYV4RGtC-FvzH
+youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 -i PLz2NxjLbk1uRRe0p_Z9XyYV4RGtC-FvzH
+```
+
