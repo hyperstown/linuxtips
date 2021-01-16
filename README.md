@@ -6,6 +6,25 @@ In this repository you will find all kinds of useful scripts, tips etc.
 This commands and scripts are written for Arch/Manjaro with KDE flavour. Written as simply as possible so even total begginer can use it. 
 
 
+## Content Table:
+
+1. [HP printer setup](#hp-printer-setup)
+2. [Disable title bar Chromium](#disable-title-bar-chromium)
+3. [Disable title bar Firefox](#disable-title-bar-firefox)
+4. [Disable title bar VS Code](#disable-title-bar-vs-code)
+5. [VS Code Marketplace](#vs-code-marketplace)
+6. [KDE, turn on screen saver on lock after few seconds (far from perfect, TODO make script that will change dpms settings)](#kde-turn-on-screen-saver-on-lock-after-few-seconds-far-from-perfect-todo-make-script-that-will-change-dpms-settings)
+7. [AUR in CLI. YAY](#aur-in-cli-yay)
+8. [Sync time in dual boot mode with Windows](#sync-time-in-dual-boot-mode-with-windows)
+9. [Network](#network)
+10. [DroidCam](#droidcam)
+11. [Python](#python)
+12. [Bash](#bash)
+13. [FFmpeg](#ffmpeg)
+14. [GCC](#gcc)
+15. [Screen](#screen)
+16. [KDE Specific](#kde-specific)
+17. []()
 
 
 
@@ -83,11 +102,22 @@ yay vscode
 ```
 timedatectl set-local-rtc 1 --adjust-system-clock
 ```
+### Network:
 
-### Basic net tools:
+Basic net tools:
 ```
 sudo pacman -Sy net-tools
 sudo pacman -Sy traceroute
+```
+
+Network usage monitor:
+
+vnstat
+
+```
+pacman -Sy vnstat
+systemctl start vnstat.service 
+systemctl enable vnstat.service
 ```
 
 ### DroidCam:
@@ -122,18 +152,6 @@ Use in .bash_rc in home dir.
 ```
 alias ytbest="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 alias cppnew="/home/felix/scripts/createcpp.sh"
-```
-
-### Network:
-
-Network usage monitor:
-
-vnstat
-
-```
-pacman -Sy vnstat
-systemctl start vnstat.service 
-systemctl enable vnstat.service
 ```
 
 ### FFmpeg:
