@@ -155,6 +155,12 @@ alias cppnew="/home/felix/scripts/createcpp.sh"
 alias ytbestaudio="youtube-dl -x --audio-format mp3"
 ```
 
+#### Remove Only Current Session Bash History and Leave Older History Untouched
+
+```
+unset HISTFILE && exit
+```
+
 ### FFmpeg:
 
 Converting mp4 file into HLS playlist:
