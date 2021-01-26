@@ -7,4 +7,6 @@ if [ -f "$FILE" ]; then
     xset dpms 30 45 60
 else 
     xset q >> ~/.timeout_info_temp
+    xset dpms 30 45 60
 fi
+
