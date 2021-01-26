@@ -16,5 +16,5 @@ if [ -f "$FILE" ]; then
     rm -rf ~/.timeout_info_temp
 else
     xset dpms 600 900 1200
-    notify-send -t 15000 "[Error]: Cannot read screen timeout temp file!" "Screen timeout set to 10 minutes. Check the scirpt."
+    notify-send -t 15000 "[Error]: Cannot read screen timeout temp file!" "Screen timeout set to 10 minutes. Check the script."
 fi
