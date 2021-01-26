@@ -13,7 +13,7 @@ This commands and scripts are written for Arch/Manjaro with KDE flavour. Written
 3. [Disable title bar Firefox](#disable-title-bar-firefox)
 4. [Disable title bar VS Code](#disable-title-bar-vs-code)
 5. [VS Code Marketplace](#vs-code-marketplace)
-6. [KDE, turn on screen saver on lock after few seconds (far from perfect, TODO make script that will change dpms settings)](#kde-turn-on-screen-saver-on-lock-after-few-seconds-far-from-perfect-todo-make-script-that-will-change-dpms-settings)
+6. [KDE, turn on screen saver on lock after few seconds](#kde-turn-on-screen-saver-on-lock-after-few-seconds)
 7. [AUR in CLI. YAY](#aur-in-cli-yay)
 8. [Sync time in dual boot mode with Windows](#sync-time-in-dual-boot-mode-with-windows)
 9. [Network](#network)
@@ -73,9 +73,8 @@ with:
 https://wiki.archlinux.org/index.php/Visual_Studio_Code
 
 
-### KDE, turn on screen saver on lock after few seconds (far from perfect, TODO make script that will change dpms settings):
-Serach Notifications > Applications: Configure > Search Screen Saver > Configure Events > run command true > /bin/sleep 15; /usr/bin/xset dpms force off
-xset dpms 12 22 60    #Time is given in seconds
+### KDE, turn on screen saver on lock after few seconds:
+Serach Notifications > Applications: Configure > Search Screen Saver > Configure Events > run command true > add full path to the scipts: timeout_lock.sh, timeout_unlock.sh
 
 ### AUR in CLI. YAY:
 
