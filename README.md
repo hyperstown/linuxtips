@@ -77,20 +77,8 @@ https://wiki.archlinux.org/index.php/Visual_Studio_Code
 Serach Notifications > Applications: Configure > Search Screen Saver > Configure Events > run command true > add full path to the scipts: timeout_lock.sh, timeout_unlock.sh
 
 ### AUR in CLI. YAY:
-
-install base:
 ```
-sudo pacman -S base-devel
-```
-install yay:
-```
-https://github.com/Jguer/yay 
-pacman -S --needed git base-devel
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-cd ..
-rm -r yay
+sudo pacman -Sy yay
 ```
 Usage example:
 ```
