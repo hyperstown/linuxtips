@@ -9,4 +9,4 @@ else
 fi
 
 #to run this script on startup put it in /etc/profile.d/
-#sudo cp ~/sync_bash_history.sh /etc/profile.d/
+#sudo cp ~/bash_history_full_sync.sh /etc/profile.d/
