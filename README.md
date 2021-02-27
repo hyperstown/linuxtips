@@ -25,6 +25,7 @@ This commands and scripts are written for Arch/Manjaro with KDE flavour. Written
 15. [Screen](#screen)
 16. [KDE Specific](#kde-specific)
 17. [youtube-dl](#youtube-dl)
+18. [SSH and tunneling](#ssh-and-tunneling)
 
 
 
@@ -251,4 +252,27 @@ Playlist download:
 youtube-dl -x --audio-format mp3 -i PLz2NxjLbk1uRRe0p_Z9XyYV4RGtC-FvzH
 youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 -i PLz2NxjLbk1uRRe0p_Z9XyYV4RGtC-FvzH
 ```
+
+### SSH and tunneling
+
+Connect to the server via SSH
+
+```
+ssh u0_a244@192.168.1.5 -p 8022
+```
+where:
+- `u0_a244` is remote server username
+- `192.168.1.5` is IP of remote server
+- `8022` is ssh port of remote server (Termux default port is 8022, for others is 22)
+
+Create tunnel:
+
+```
+ssh -L 5757:192.168.1.5:4747 u0_a244@192.168.1.5 -p 8022
+```
+This will forward port 5757 from remote server into port 4747 into local machine.
+
+eg. before creating tunnel in order to access program that is using port 5757 on remote server we have to paste 192.168.1.5:5757.
+After creating tunnel we can do that on 127.0.0.1:4747 (localhost)
+
 
