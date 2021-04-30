@@ -266,11 +266,14 @@ where:
 - `8022` is ssh port of remote server (Termux default port is 8022, for others is 22)
 
 Create tunnel:
-
+```
+ssh -L local_port:remote_address:remote_port username@server.com
+```
+example:
 ```
 ssh -L 5757:192.168.1.5:4747 u0_a244@192.168.1.5 -p 8022
 ```
-This will forward port 5757 from remote server into port 4747 into local machine.
+This will forward port 4747 from remote server into port 5757 into local machine.
 
 eg. before creating tunnel in order to access program that is using port 5757 on remote server we have to paste 192.168.1.5:5757.
 After creating tunnel we can do that on 127.0.0.1:4747 (localhost)
