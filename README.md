@@ -79,6 +79,7 @@ Serach Notifications > Applications: Configure > Search Screen Saver > Configure
 
 ### AUR in CLI. YAY:
 ```
+sudo pacman -S --needed git base-devel
 sudo pacman -Sy yay
 ```
 Usage example:
