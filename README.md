@@ -1,9 +1,10 @@
 # linuxtips
-### Linux Tech Tips
+## Linux Tech Tips - subject name to change
+[Not affiliated with Linus Tech Tips]
 
 In this repository you will find all kinds of useful scripts, tips etc.
 
-This commands and scripts are written for Arch/Manjaro with KDE flavour. Written as simply as possible so even total begginer can use it. 
+This commands and scripts are written for Arch/Manjaro with KDE flavour. Written as simply as possible so even total beginner can use it. 
 
 
 ## Content Table:
@@ -26,29 +27,32 @@ This commands and scripts are written for Arch/Manjaro with KDE flavour. Written
 16. [KDE Specific](#kde-specific)
 17. [youtube-dl](#youtube-dl)
 18. [SSH and tunneling](#ssh-and-tunneling)
+19. [KVM/QEMU](#kvmqemu)
+20. [Stream audio from PulseAudio into Android device](#stream-audio-from-pulseaudio-into-android-device)
 
 
 
-### HP printer setup
+## HP printer setup
 
 ```
-sudo pacman -Sy manjaro-printer
-sudo pacman -Sy hplip
-sudo systemctl enable --now org.cups.cupsd.service
+$ sudo pacman -Sy manjaro-printer
+$ sudo pacman -Sy hplip
+$ sudo systemctl enable --now org.cups.cupsd.service
 ```
-NOTE: After Kernel update you might need to reconfigure driver in HP Device Menager.
+NOTE: After Kernel update you might need to reconfigure driver in HP Device Manager.
 
-### Disable title bar Chromium
+## Disable title bar Chromium
 Use system title bar and borders = False
 
-### Disable title bar Firefox
+## Disable title bar Firefox
 Customize > Title bar = False
 
-### Disable title bar VS Code
+## Disable title bar VS Code
 Settings > Preferences > Window: Title Bar Style = Custom
 
-### VS Code Marketplace.
-In Arch and Manjaro default version of VS Code is OSS Code which is just an open source version of regular VSCode. I belive the only differences are Telemetry data and Marketplace.
+## VS Code Marketplace.
+
+In Arch and Manjaro default version of VS Code is OSS Code which is just an open source version of regular VSCode. I believe the only differences are Telemetry data and Marketplace.
 Since Open Source version of VSCode marketplace is in very much alpha phase is best to use MS version. 
 In order to do that you have to install visual-studio-code-bin from AUR. (Microsoft-branded release). Note that this might compromise privacy.
 
@@ -73,11 +77,17 @@ with:
 ```
 https://wiki.archlinux.org/index.php/Visual_Studio_Code
 
+The only problem is that this action needs to be performed every time Code OSS is updated. 
 
-### KDE, turn on screen saver on lock after few seconds:
-Serach Notifications > Applications: Configure > Search Screen Saver > Configure Events > run command true > add full path to the scipts: timeout_lock.sh, timeout_unlock.sh
+### **UPDATE:**
+[This package](https://aur.archlinux.org/packages/code-marketplace/) automatically does everything that was described above.\
+This package basically installs a hook that will patch `/usr/lib/code/product.json` to use vscode marketplace every time community/code is updated.
 
-### AUR in CLI. YAY:
+
+## KDE, turn on screen saver on lock after few seconds:
+Serach Notifications > Applications: Configure > Search Screen Saver > Configure Events > run command true > add full path to the scripts: timeout_lock.sh, timeout_unlock.sh
+
+## AUR in CLI. YAY:
 ```
 sudo pacman -Sy yay
 ```
@@ -86,11 +96,11 @@ Usage example:
 yay vscode
 ```
 
-### Sync time in dual boot mode with Windows:
+## Sync time in dual boot mode with Windows:
 ```
 timedatectl set-local-rtc 1 --adjust-system-clock
 ```
-### Network:
+## Network:
 
 Basic net tools:
 ```
@@ -108,7 +118,7 @@ systemctl start vnstat.service
 systemctl enable vnstat.service
 ```
 
-### DroidCam:
+## DroidCam:
 
 install droidcam form website
 run script install_sound
@@ -128,11 +138,11 @@ pacmd load-module module-alsa-source device=hw:2,1,0
 ```
 **Module has to be loaded while droidcam is running**
 
-### Python:
+## Python:
 
 venv activation: `source venvName/bin/activate`
 
-### Bash:
+## Bash:
 
 #### Useful aliases:
 Use in .bash_rc in home dir.
@@ -149,7 +159,7 @@ alias ytbestaudio="youtube-dl -x --audio-format mp3"
 unset HISTFILE && exit
 ```
 
-### FFmpeg:
+## FFmpeg:
 
 Converting mp4 file into HLS playlist:
 
@@ -160,7 +170,7 @@ Converting mp4 file into HLS playlist:
 - hls_time - set segment length in seconds. Default: 2
 - hls_list_size - set the maximum number of playlist entries. 0 indicates no limit.
 
-### GCC
+## GCC
 
 Compiling C++ file with threads:
 
@@ -170,7 +180,7 @@ Compiling C++ file with threads:
 - -lstdc++ - this option has to be used in order to compile C++ file. Without it compile will assume it's written in C.
 
 
-### Screen:
+## Screen:
 
 `screen` - open new screen sesion.
 
@@ -186,7 +196,7 @@ List of all sessions:
 
 `screen -ls`
 
-### KDE Specific:
+## KDE Specific:
 
 If executables open in Kate you can change this settings following this steps:
 
@@ -203,7 +213,7 @@ to:
 behaviourOnLaunch=execute
 ```
 
-### youtube-dl
+## youtube-dl
 
 A CLI tool for downloading youtube videos:
 
@@ -253,7 +263,7 @@ youtube-dl -x --audio-format mp3 -i PLz2NxjLbk1uRRe0p_Z9XyYV4RGtC-FvzH
 youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 -i PLz2NxjLbk1uRRe0p_Z9XyYV4RGtC-FvzH
 ```
 
-### SSH and tunneling
+## SSH and tunneling
 
 Connect to the server via SSH
 
@@ -278,4 +288,92 @@ This will forward port 4747 from remote server into port 5757 into local machine
 eg. before creating tunnel in order to access program that is using port 5757 on remote server we have to paste 192.168.1.5:5757.
 After creating tunnel we can do that on 127.0.0.1:4747 (localhost)
 
+## KVM/QEMU:
 
+VirtualBox is one of the easiest way to run virtual machines on your OS however it has some issues with compatibility and performance. For light use some things are negligible but there were also some updates that introduced severe issues with audio. (If you find yourself in this situation best solution is to switch to ALSA driver in VM settings)
+If you however find yourself in position that all the little annoyances of VBox are no longer possible to bear you should install KVM/QEMU.
+KVM/QEMU also has other benefits such as it's fully open source and supports PCI passthrough.
+
+### **Installation:**
+
+#### Fedora:
+
+- View package group info.
+- Install all the virtualization packages.
+- Start libvirtd service.
+- Enable (Start on boot) libvirtd service.
+
+```
+$ dnf groupinfo virtualization
+
+Group: Virtualization
+ Description: These packages provide a graphical virtualization environment.
+ Mandatory Packages:
+   virt-install
+ Default Packages:
+   libvirt-daemon-config-network
+   libvirt-daemon-kvm
+   qemu-kvm
+   virt-manager
+   virt-viewer
+ Optional Packages:
+   libguestfs-tools
+   python3-libguestfs
+   virt-top
+```
+
+```
+$ sudo dnf install @virtualization
+$ sudo systemctl start libvirtd
+$ sudo systemctl enable libvirtd
+```
+
+[Source](https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-virtualization/)
+
+#### Arch/Manjaro:
+
+- Install all the virtualization packages.
+- Start libvirtd service.
+- Enable (Start on boot) libvirtd service.
+
+```
+$ sudo pacman -S virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat
+```
+
+```
+$ sudo systemctl enable libvirtd.service
+$ sudo systemctl start libvirtd.service
+```
+[Source](https://wiki.manjaro.org/index.php?title=Virt-manager)
+[More info about frontend](https://wiki.archlinux.org/title/Libvirt)
+[More info about QEMU](https://wiki.archlinux.org/title/QEMU)
+
+
+
+## Stream audio from PulseAudio into Android device:
+
+PulseAudio has option to stream audio using RTP. In order to do that it has 2 modules. RTP sender and RTP receiver. [This guys wrapped receiver into android app](https://github.com/wenxin-wang/PulseDroidRtp).
+
+As dependencies it needs `pulseaudio`, `pulseaudio-rtp` (Possibly more therefore here is working config)
+
+```
+$ pacman -Q |grep pulse
+  pulseaudio 15.0-1
+  pulseaudio-alsa 1:1.2.5-2
+  pulseaudio-bluetooth 15.0-1
+  pulseaudio-equalizer 15.0-1
+  pulseaudio-jack 15.0-1
+  pulseaudio-lirc 15.0-1
+  pulseaudio-qt 1.3-1
+  pulseaudio-rtp 15.0-1
+  pulseaudio-zeroconf 15.0-1
+```
+
+Load sink:
+
+```
+$ pactl load-module module-null-sink sink_name=rtp format=s16be channels=2 rate=48000
+$ pactl load-module module-rtp-send source=rtp.monitor destination=192.168.18.5 port=4010 mtu=320
+```
+
+If module load fail, required module is not installed or installation is broken. Solution also seems to be incompatible with PipeWire. (This require confirmation and testing)
