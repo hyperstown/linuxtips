@@ -160,6 +160,12 @@ alias ytbestaudio="youtube-dl -x --audio-format mp3"
 unset HISTFILE && exit
 ```
 
+#### Turn off your screen:
+
+```
+xset dpms force off
+```
+
 ## FFmpeg:
 
 Converting mp4 file into HLS playlist:
