@@ -382,5 +382,19 @@ Load sink:
 $ pactl load-module module-null-sink sink_name=rtp format=s16be channels=2 rate=48000
 $ pactl load-module module-rtp-send source=rtp.monitor destination=192.168.18.5 port=4010 mtu=320
 ```
+**Note: that destination is a IP of reciever device.**
 
 If module load fail, required module is not installed or installation is broken. Solution also seems to be incompatible with PipeWire. (This require confirmation and testing)
+
+Note that destination is a IP of reciever device.
+
+Recievier:
+Download [PulseAudio Rtp Receiver](https://f-droid.org/en/packages/me.wenxinwang.pulsedroidrtp/)
+Alternative Github [download](https://github.com/wenxin-wang/PulseDroidRtp/)
+
+Set parameters to:
+`IP: 0.0.0.0`
+`Port: 4010`
+`MTU: 320`
+`Channel Count 2`
+`Channel Mask 0`
