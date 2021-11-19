@@ -351,8 +351,8 @@ $ sudo pacman -S virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-ne
 $ sudo systemctl enable libvirtd.service
 $ sudo systemctl start libvirtd.service
 ```
-[Source](https://wiki.manjaro.org/index.php?title=Virt-manager)
-[More info about frontend](https://wiki.archlinux.org/title/Libvirt)
+[Source](https://wiki.manjaro.org/index.php?title=Virt-manager)\
+[More info about frontend](https://wiki.archlinux.org/title/Libvirt)\
 [More info about QEMU](https://wiki.archlinux.org/title/QEMU)
 
 
@@ -389,7 +389,7 @@ If module load fail, required module is not installed or installation is broken.
 Note that destination is a IP of reciever device.
 
 Recievier:
-Download [PulseAudio Rtp Receiver](https://f-droid.org/en/packages/me.wenxinwang.pulsedroidrtp/)
+Download [PulseAudio Rtp Receiver](https://f-droid.org/en/packages/me.wenxinwang.pulsedroidrtp/)\
 Alternative Github [download](https://github.com/wenxin-wang/PulseDroidRtp/)
 
 Set parameters to:
