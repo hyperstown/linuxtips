@@ -36,10 +36,9 @@ This commands and scripts are written for Arch/Manjaro with KDE flavour. Written
 
 ```
 $ sudo pacman -Sy manjaro-printer
-$ sudo pacman -Sy hplip
 $ sudo systemctl enable --now org.cups.cupsd.service
 ```
-NOTE: After Kernel update you might need to reconfigure driver in HP Device Manager.
+https://aur.archlinux.org/packages/foo2zjs-nightly/ Work perfectly! <3
 
 ## Disable title bar Chromium
 Use system title bar and borders = False
