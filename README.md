@@ -35,10 +35,10 @@ This commands and scripts are written for Arch/Manjaro with KDE flavour. Written
 ## HP printer setup
 
 ```
-$ sudo pacman -Sy manjaro-printer
+$ sudo pacman -Sy hplip
 $ sudo systemctl enable --now org.cups.cupsd.service
 ```
-https://aur.archlinux.org/packages/foo2zjs-nightly/ Work perfectly! <3
+https://aur.archlinux.org/packages/foo2zjs-nightly/ - select foo2xqx as a driver
 
 ## Disable title bar Chromium
 Use system title bar and borders = False
