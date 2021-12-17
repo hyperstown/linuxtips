@@ -29,6 +29,7 @@ This commands and scripts are written for Arch/Manjaro with KDE flavour. Written
 18. [SSH and tunneling](#ssh-and-tunneling)
 19. [KVM/QEMU](#kvmqemu)
 20. [Stream audio from PulseAudio into Android device](#stream-audio-from-pulseaudio-into-android-device)
+21. [Minecraft Sever](#minecraft-server)
 
 
 
@@ -354,6 +355,32 @@ $ sudo systemctl start libvirtd.service
 [More info about frontend](https://wiki.archlinux.org/title/Libvirt)\
 [More info about QEMU](https://wiki.archlinux.org/title/QEMU)
 
+### Remote desktop
+
+On host machine:
+
+Enable or start sshd:
+```
+$ sudo systemctl start sshd
+```
+Make sure your user is in libvirt group. If not:
+```
+$ sudo usermod -a -G libvirt <your_username>
+```
+
+On client machine:
+
+Install `gnome-ssh-askpass` or add ssh key to your config file.
+
+For Arch users:
+```
+$ yay gnome-ssh-askpass3`
+$ sudo ln -s /usr/lib/ssh/gnome-ssh-askpass3 /usr/lib/ssh/ssh-askpass
+```
+Make sure your user is in libvirt group. If not:
+```
+$ sudo usermod -a -G libvirt <your_username>
+```
 
 
 ## Stream audio from PulseAudio into Android device:
@@ -397,3 +424,8 @@ Set parameters to:
 `MTU: 320`
 `Channel Count 2`
 `Channel Mask 0`
+
+## Minecraft Sever:
+
+https://github.com/marcsello/minecraftd
+
