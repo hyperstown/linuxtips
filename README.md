@@ -425,7 +425,7 @@ Set parameters to:
 `Channel Count 2`
 `Channel Mask 0`
 
-## Minecraft Sever:
+## Minecraft Server:
 
 https://github.com/marcsello/minecraftd
 
