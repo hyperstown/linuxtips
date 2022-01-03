@@ -177,6 +177,15 @@ Converting mp4 file into HLS playlist:
 - hls_time - set segment length in seconds. Default: 2
 - hls_list_size - set the maximum number of playlist entries. 0 indicates no limit.
 
+Scaling video up and down:
+
+```bash
+ffmpeg -i mieruko.mp4 -vf scale=iw*0.5:ih m.mp4
+```
+<hr>
+0.5 - scale twice down 
+2 - scale twice up
+
 ## GCC
 
 Compiling C++ file with threads:
