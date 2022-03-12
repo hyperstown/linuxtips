@@ -200,6 +200,8 @@ Compiling C++ file with threads:
 
 `screen` - open new screen sesion.
 
+`screen -S somename` - create new named session
+
 ctrl + a - open command menu (it doesnt show anything on screen)
 
 ctrl + d - detach session
