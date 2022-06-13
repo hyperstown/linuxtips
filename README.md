@@ -29,7 +29,8 @@ This commands and scripts are written for Arch/Manjaro with KDE flavour. Written
 18. [SSH and tunneling](#ssh-and-tunneling)
 19. [KVM/QEMU](#kvmqemu)
 20. [Stream audio from PulseAudio into Android device](#stream-audio-from-pulseaudio-into-android-device)
-21. [Minecraft Sever](#minecraft-server)
+21. [Stream audio from PulseAudio into another Linux device](#stream-audio-from-pulseaudio-into-another-linux-device)
+22. [Minecraft Sever](#minecraft-server)
 
 
 
@@ -393,7 +394,6 @@ Make sure your user is in libvirt group. If not:
 $ sudo usermod -a -G libvirt <your_username>
 ```
 
-
 ## Stream audio from PulseAudio into Android device:
 
 PulseAudio has option to stream audio using RTP. In order to do that it has 2 modules. RTP sender and RTP receiver. [This guys wrapped receiver into android app](https://github.com/wenxin-wang/PulseDroidRtp).
@@ -435,6 +435,24 @@ Set parameters to:
 `MTU: 320`
 `Channel Count 2`
 `Channel Mask 0`
+
+
+## Stream audio from PulseAudio into another Linux device
+
+On the "sender" add loop=true to "load-module module-rtp-send" and also add "load-module module-rtp-recv".
+
+So "sender"
+```
+$ pactl load-module module-null-sink sink_name=rtp
+$ pactl load-module module-rtp-send source=rtp.monitor rate=48000 channels=2 format=s16be loop=true
+```
+"listener"
+```
+load-module module-rtp-recv
+```
+
+No need for module-combine-sink
+
 
 ## Minecraft Server:
 
