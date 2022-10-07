@@ -31,6 +31,7 @@ This commands and scripts are written for Arch/Manjaro with KDE flavour. Written
 20. [Stream audio from PulseAudio into Android device](#stream-audio-from-pulseaudio-into-android-device)
 21. [Stream audio from PulseAudio into another Linux device](#stream-audio-from-pulseaudio-into-another-linux-device)
 22. [Minecraft Sever](#minecraft-server)
+23. [ZSH](#zsh)
 
 
 
@@ -457,4 +458,9 @@ No need for module-combine-sink
 ## Minecraft Server:
 
 https://github.com/marcsello/minecraftd
+
+## ZSH
+
+Youtube links don't work with mpv, youtube-dl etc.
+Allow special characters in links: `$ setopt nonomatch`
 
