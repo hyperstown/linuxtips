@@ -1,0 +1,14 @@
+{
+    "editor.inlayHints.enabled": "off",
+    "basedpyright.analysis.typeCheckingMode": "standard",
+    "gitlens.codeLens.enabled": false,
+    "window.titleBarStyle": "custom",
+    "basedpyright.analysis.diagnosticSeverityOverrides": {
+        "reportIncompatibleMethodOverride": false,
+        "reportPrivateImportUsage": false,
+        "reportAttributeAccessIssue": false,
+        "reportArgumentType": false,
+        "reportAssignmentType": false,
+        "reportIndexIssue": false
+    }
+}
