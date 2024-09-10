@@ -54,23 +54,57 @@ Settings > Preferences > Window: Title Bar Style = Custom
 
 ## VS Code Marketplace.
 
-In Arch and Manjaro default version of VS Code is OSS Code which is just an open source version of regular VSCode. I believe the only differences are Telemetry data and Marketplace.
-Since Open Source version of VSCode marketplace is in very much alpha phase is best to use MS version. 
-In order to do that you have to install visual-studio-code-bin from AUR. (Microsoft-branded release). Note that this might compromise privacy.
+In Arch and Manjaro default version of vscode is code-oss which is just an FOSS version of regular Vscode.\
+Most notable differences are Telemetry data and Marketplace but in my experience it works better than code-oss.\
+~~Since FOSS version of VSCode marketplace is in very much alpha phase is best to use MS version.~~\
+It's been a few years and open-vsx has improved quite a lot! For me (and I believe most other people) open-vsx provides
+all extensions that are essential.\
+One caveat is Python however. Microsoft provides pylance, very advanced language server for Python which honestly 
+has no competition and obviously works only with Microsoft's version of vscode. They recommend using pyright which
+is core component of pylance but just like stock android it's basically unusable. Actually it's even worse. 
+pyright main developer is hostile towards people reporting issues.\
+While there are hacks to make pylance working with code-oss currently the best way is to achieve similar result without having
+to relay on Microsoft is to just install vscodium and basedpyright extension. (For some reason basedpyright doesn't work for me 
+on code-oss, it might work for you but it doesn't for me)\
+Worth noting is that basedpyright is a fork of pyright that implements features of pylance and fixes issues that pyright refuses
+to fix.\
+The only downside for me is that defaults are way to strict (Reports unused imports as errors for example), this is super easy fix though:
+just add this to your settings:
 
-Technically, one could also edit the product.json as shown below, but that would not comply with the Microsoft Marketplace Terms of Use. Additionally, the changes would be overwritten during package update. 
+```jsonc
+{
+    "editor.inlayHints.enabled": "off",
+    "basedpyright.analysis.typeCheckingMode": "standard",
+    "basedpyright.analysis.diagnosticSeverityOverrides": {
+        "reportIncompatibleMethodOverride": false,
+        "reportPrivateImportUsage": false,
+        "reportAttributeAccessIssue": false,
+        "reportArgumentType": false,
+        "reportAssignmentType": false,
+        "reportIndexIssue": false
+    }
+}
+```
+
+
+
+If you don't want to deal with all that you can just install `visual-studio-code-bin` from AUR. (Microsoft-branded release). 
+Note that this might compromise privacy.
+
+Technically, one could also edit the product.json as shown below, but that would not comply with the Microsoft Marketplace Terms of Use. 
+Additionally, the changes would be overwritten during package update. 
 
 Edit `/usr/lib/code/product.json`:
 
 Replace:
-```
+```json
   "extensionsGallery": {
     "serviceUrl": "https://open-vsx.org/vscode/gallery",
     "itemUrl": "https://open-vsx.org/vscode/item"
   },
 ```
 with:
-```
+```json
   "extensionsGallery": {
     "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",
     "cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",
@@ -82,18 +116,33 @@ https://wiki.archlinux.org/index.php/Visual_Studio_Code
 The only problem is that this action needs to be performed every time Code OSS is updated. 
 
 ### **UPDATE:**
-[This package](https://aur.archlinux.org/packages/code-marketplace/) automatically does everything that was described above.\
+[This package](https://aur.archlinux.org/packages/code-marketplace/) automatically makes sure that config stay the same.\
 This package basically installs a hook that will patch `/usr/lib/code/product.json` to use vscode marketplace every time community/code is updated.
 
 
 ## KDE, turn on screen saver on lock after few seconds:
-Serach Notifications > Applications: Configure > Search Screen Saver > Configure Events > run command true > add full path to the scripts: timeout_lock.sh, timeout_unlock.sh
+~~Serach Notifications > Applications: Configure > Search Screen Saver > Configure Events > run command true > add full path to the scripts: timeout_lock.sh, timeout_unlock.sh~~
+(This is no longer needed as KDE implements this feature now)
 
 ## AUR in CLI. YAY:
-```
+
+For Manjaro:
+```bash
 sudo pacman -S --needed git base-devel
 sudo pacman -Sy yay
 ```
+
+For Arch:
+
+```bash
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ..
+rm -rf yay
+```
+
 Usage example:
 ```
 yay vscode
@@ -107,8 +156,7 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 
 Basic net tools:
 ```
-sudo pacman -Sy net-tools
-sudo pacman -Sy traceroute
+sudo pacman -Sy net-tools traceroute
 ```
 
 Network usage monitor:
@@ -164,9 +212,11 @@ unset HISTFILE && exit
 
 #### Turn off your screen:
 
-```
+```bash
 xset dpms force off
 ```
+**NOTE**: that this will work only on X11. Wayland is a new default so please 
+either use build in shortcuts for you DE or download [soff](https://github.com/hyperstown/soff)
 
 ## FFmpeg:
 
@@ -182,7 +232,7 @@ Converting mp4 file into HLS playlist:
 Scaling video up and down:
 
 ```bash
-ffmpeg -i mieruko.mp4 -vf scale=iw*0.5:ih m.mp4
+ffmpeg -i your_recording.mp4 -vf scale=iw*0.5:ih m.mp4
 ```
 <hr>
 0.5 - scale twice down 
@@ -200,11 +250,14 @@ Compiling C++ file with threads:
 
 ## Screen:
 
+Virtual terminal that allows you to detach from current session and leave it in the
+background. (Alternatively you can also use tmux)
+
 `screen` - open new screen sesion.
 
 `screen -S somename` - create new named session
 
-ctrl + a - open command menu (it doesnt show anything on screen)
+ctrl + a - open command menu (it doesn't show anything on screen)
 
 ctrl + d - detach session
 
@@ -311,8 +364,9 @@ After creating tunnel we can do that on 127.0.0.1:4747 (localhost)
 ## KVM/QEMU:
 
 VirtualBox is one of the easiest way to run virtual machines on your OS however it has some issues with compatibility and performance. For light use some things are negligible but there were also some updates that introduced severe issues with audio. (If you find yourself in this situation best solution is to switch to ALSA driver in VM settings)
-If you however find yourself in position that all the little annoyances of VBox are no longer possible to bear you should install KVM/QEMU.
-KVM/QEMU also has other benefits such as it's fully open source and supports PCI passthrough.
+If you however find yourself in position that all the little annoyances of VBox are no longer possible to bear you should install KVM/QEMU. 
+(That is if you don't plan on using 3D on Windows Guest. There is [open PR](https://github.com/virtio-win/kvm-guest-drivers-windows/pull/943) regarding this issue, if it's merged then I guess this warning is no longer valid.)
+KVM/QEMU also has other benefits such as it's fully open source and supports PCI passthrough. (Though if you have lower-end hardware your motherboard doesn't support it anyway)
 
 ### **Installation:**
 
@@ -364,6 +418,18 @@ $ sudo pacman -S virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-ne
 $ sudo systemctl enable libvirtd.service
 $ sudo systemctl start libvirtd.service
 ```
+
+**NOTE**: For some reason on Manjaro default network wasn't activated.\
+You can fix it with:
+
+`sudo virsh net-start default` - Activates virtual network
+
+`sudo virsh net-autostart default` - Autostarts on system startup virtual network
+
+
+For shared clipboard and autoresize window remember to install `spice-vdagent` on guest machine.
+After resizing display it's also recommended to enable scaling to window in virt manager options.
+
 [Source](https://wiki.manjaro.org/index.php?title=Virt-manager)\
 [More info about frontend](https://wiki.archlinux.org/title/Libvirt)\
 [More info about QEMU](https://wiki.archlinux.org/title/QEMU)
@@ -383,12 +449,11 @@ $ sudo usermod -a -G libvirt <your_username>
 
 On client machine:
 
-Install `gnome-ssh-askpass` or add ssh key to your config file.
+Install `ksshaskpass` or add ssh key to your config file.
 
 For Arch users:
 ```
-$ yay gnome-ssh-askpass3`
-$ sudo ln -s /usr/lib/ssh/gnome-ssh-askpass3 /usr/lib/ssh/ssh-askpass
+$ pacman -S ksshaskpass
 ```
 Make sure your user is in libvirt group. If not:
 ```
